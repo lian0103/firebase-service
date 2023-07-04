@@ -1,0 +1,484 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol,
+ul {
+    list-style: none;
+}
+blockquote,
+q {
+    quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+}
+
+@keyframes tpFadeIn {
+    0% {
+        opacity: 0;
+        @apply z-top-10;
+        transform: translate3d(0, -25%, 0);
+    }
+    100% {
+        opacity: 1;
+        @apply z-top-10;
+        transform: none;
+    }
+}
+
+@keyframes tpFadeOut {
+    0% {
+        opacity: 1;
+        @apply z-top-10;
+        transform: none;
+    }
+    100% {
+        opacity: 0;
+        z-index: -10;
+        transform: translate3d(0, -25%, 0);
+    }
+}
+
+@keyframes tpFadeOutNoTransform {
+    0% {
+        opacity: 1;
+        @apply z-top-10;
+    }
+    100% {
+        opacity: 0;
+        z-index: -10;
+    }
+}
+
+@keyframes tpFadeInNoTransform {
+    0% {
+        opacity: 0;
+        @apply z-top-10;
+    }
+    100% {
+        opacity: 1;
+        @apply z-top-10;
+    }
+}
+
+.tp-aniIn {
+    animation-name: tpFadeIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+.tp-aniOut {
+    animation-name: tpFadeOut;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+* {
+    // outline: 1px solid #f00;
+}
+.wrapper {
+    @apply w-screen h-screen overflow-x-hidden;
+    @apply bg-color2;
+
+    .nav-bar {
+        @apply w-full flex items-center;
+        @apply bg-white;
+        .controlBox {
+            @apply select-none;
+            width: 160px;
+            @apply absolute;
+            z-index: 9990;
+            left: 20px;
+            top: 10px;
+            @media screen and (min-width: 600px) {
+                left: 46px;
+                top: 10px;
+            }
+
+            @apply text-gray0 font-medium;
+            @apply cursor-pointer;
+            font-size: 36px;
+            line-height: 55px;
+            svg {
+                margin-right: 20px;
+            }
+            span {
+                @apply hidden md:inline;
+            }
+        }
+
+        .stepsBox {
+            width: 100%;
+            height: 70px;
+            @apply flex flex-col justify-center items-center;
+
+            .text {
+                @apply text-green0 font-medium;
+                font-size: 32px;
+                line-height: 36px;
+            }
+        }
+    }
+
+    .wrapper-inner {
+        @apply flex;
+        margin: auto;
+        // height: 100vh;
+        // @apply overflow-y-scroll;
+
+        &.with-nav {
+            height: calc(100vh - 100px);
+        }
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+            background-color: #d9d9d9;
+            border-radius: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #aaaaaa;
+            &:hover {
+                background-color: #666666;
+            }
+        }
+        .wrapper-content {
+            @apply 2xl:max-w-screen-1200 p-0;
+            flex-grow: 2;
+            margin: 0 auto;
+        }
+    }
+
+    &.bg {
+        background-image: url('../assets/images/bg_home2.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+.menu {
+    @apply absolute;
+    height: calc(100vh - 200px);
+    top: 100px;
+    left: 20px;
+    transition: all 0.3s ease-in-out;
+    &.open {
+        opacity: 1;
+    }
+    &.close {
+        opacity: 0;
+    }
+    li {
+        width: 260px;
+        @apply text-black0 font-medium;
+        font-size: 36px;
+        line-height: 43px;
+        padding: 16px 24px;
+        &.current {
+            @apply text-green0;
+        }
+    }
+    .back-index {
+        @apply fixed;
+        left: 20px;
+        bottom: 150px;
+    }
+}
+
+.gt-footer {
+    @apply flex justify-center items-center;
+    width: 100vw;
+    height: 32px;
+    @apply text-white;
+    font-size: 16px;
+    line-height: 19px;
+    background: #3eb267;
+    letter-spacing: 0.7px;
+    transition: all 0.3s ease-in-out;
+    svg {
+        width: 20px;
+        margin-right: 10px;
+        color: #fff;
+    }
+}
+
+.form-item-wrapper {
+    @apply flex justify-center items-start relative;
+    .label {
+        line-height: 78px;
+        padding: 0 10px;
+        height: 78px;
+        width: 20%;
+        min-width: 140px;
+        text-align: center;
+        font-size: 24px;
+        @apply text-gray0 font-medium select-none overflow-hidden;
+        white-space: nowrap;
+    }
+}
+
+.index-wrapper {
+    @apply flex flex-col justify-between items-center;
+    padding: 0;
+    gap: 30px;
+
+    .logo {
+        width: 200px;
+    }
+    .index-img {
+        width: 50vh;
+        min-height: 20vh;
+    }
+
+    .card-box {
+        width: 100%;
+        max-width: 100vw;
+        padding: 10vh 0;
+        // background-image: url('../assets/images/bg_home.png');
+        // background-size: cover;
+        // background-repeat: no-repeat;
+        .card {
+            @apply bg-white;
+        }
+
+        @apply flex md:justify-around items-center;
+
+        @media screen and (max-width: 860px) {
+            @apply flex-wrap mx-auto;
+            padding: 0;
+            max-width: 360px;
+        }
+
+        .highLightText {
+            @apply text-green1;
+        }
+    }
+}
+
+.stepBox {
+    width: 760px;
+    min-height: 70vh;
+    @apply flex flex-col justify-around items-center text-center mx-auto;
+    gap: 20px;
+
+    .msg-text {
+        @apply w-full;
+        font-size: 36px;
+        @apply text-gray0;
+        padding: 15px 0;
+    }
+
+    .send-again-text {
+        font-size: 24px;
+        padding: 15px 0;
+        @apply text-color1;
+    }
+}
+
+.box {
+    @apply flex flex-col;
+    gap: 20px;
+}
+
+.member-group-box {
+    @apply flex-col;
+    // @apply overflow-y-scroll;
+    width: 760px !important;
+    max-height: 375px;
+    margin: 20px auto 0 auto;
+    padding: 0 20px;
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        background-color: #d9d9d9;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #aaaaaa;
+        &:hover {
+            background-color: #666666;
+        }
+    }
+}
+
+.btns-box {
+    @apply flex justify-center items-center;
+    @apply max-w-ipadMini;
+    margin: 20px auto 0 auto;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+.empty-top {
+    height: 20px;
+    width: 0;
+}
+
+.form-box {
+    @apply flex flex-col;
+    width: 95%;
+    margin: auto;
+    gap: 30px;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    @apply max-w-ipadMini;
+}
+
+.go-back-pos-fixed {
+    @apply fixed;
+    top: 18px;
+}
+
+.stepBox-contract {
+    width: calc(100vw - 20px);
+    max-width: 1200px;
+    height: 80vh;
+}
+
+.contract-box {
+    width: 100%;
+    height: 50vh;
+    margin: 0px 0;
+    padding: 0px 10px;
+    @apply text-left overflow-y-scroll;
+    font-size: 24px;
+    line-height: 32px;
+    @apply text-black0;
+    letter-spacing: 0.24em;
+}
+
+.sign-canvas {
+    @apply outline outline-gray0 bg-white;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
