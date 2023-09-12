@@ -18,10 +18,9 @@ export default ({ mode }) => {
       }),
       Components(),
     ],
-    base: VITE_APP_BASE,
-
+    base: "/meeting/",
     build: {
-      outDir: "./docs",
+      outDir: "docs",
       rollupOptions: {
         output: {
           chunkFileNames: "assets/js/[name]-[hash].js",
