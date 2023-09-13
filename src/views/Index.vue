@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from "vue";
-import { loginWithGoogle } from "../firebase/googleFirebase";
+import { loginWithGoogle } from "../firebase/authService.js";
 import { appInfo } from "../stores";
 
 const info = ref({});
@@ -49,18 +49,6 @@ const handleTest = () => {
         />
       </div>
     </div>
-  </div>
-  <div class="w-1/3">
-    <form action="" class="flex flex-col gap-4">
-      <h2>使用Enter</h2>
-      <input type="text" v-model="inputRef" />
-      <button
-        @click.prevent="handleTest"
-        class="px-2 py-3 bg-gray-600 text-white rounded-4"
-      >
-        test Enter
-      </button>
-    </form>
   </div>
   <div class="py-6 flex flex-col gap-4">
     <h2>appInfo.FirebaseCloudMessageToken</h2>

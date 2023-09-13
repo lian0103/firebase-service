@@ -18,7 +18,7 @@ export default ({ mode }) => {
       }),
       Components(),
     ],
-    base: "/meeting/",
+    base: VITE_APP_BASE,
     build: {
       outDir: "docs",
     },
