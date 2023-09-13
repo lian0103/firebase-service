@@ -1,6 +1,7 @@
 <script setup>
 import { reactive } from "vue";
 import { loginWithGoogle } from "../firebase/googleFirebase";
+import { appInfo } from "../stores";
 
 const info = ref({});
 
@@ -60,6 +61,15 @@ const handleTest = () => {
         test Enter
       </button>
     </form>
+  </div>
+  <div class="py-6 flex flex-col gap-4">
+    <h2>appInfo.FirebaseCloudMessageToken</h2>
+    <p>{{ appInfo.FirebaseCloudMessageToken }}</p>
+  </div>
+
+  <div class="py-6 flex flex-col gap-4">
+    <h2>appInfo.onMessage</h2>
+    <p>{{ appInfo.onMessage }}</p>
   </div>
 </template>
 
