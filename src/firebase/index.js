@@ -1,6 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import {
+  getMessaging,
+  isSupported,
+  getToken,
+  onMessage,
+} from "firebase/messaging";
 import { appInfo } from "../stores/index";
+
+const vapidKey =
+  "BMvqTbOYx0np9__r5J0Dlg7WlXDcZ6QnkWfh1H2_91AT1MRDwRnsUcChpbGDfKLb0SAj35zwr7Zd5BDrJigjZvY";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAPpXwlEC2gxidiytOdHOnjCMeet0kjukI",
@@ -24,20 +32,28 @@ function requestPermission() {
 // Initialize Firebase
 export const initFirebase = async () => {
   const app = initializeApp(firebaseConfig);
-  const message = getMessaging(app);
+  const messaging = async () => (await isSupported()) && getMessaging(app);
+  const msg = await messaging();
 
   await requestPermission();
 
-  getToken(message, {
-    vapidKey:
-      "BMvqTbOYx0np9__r5J0Dlg7WlXDcZ6QnkWfh1H2_91AT1MRDwRnsUcChpbGDfKLb0SAj35zwr7Zd5BDrJigjZvY",
+  getToken(msg, {
+    vapidKey: vapidKey,
   }).then((currentToken) => {
     appInfo.value.FirebaseCloudMessageToken = currentToken;
+
+    console.log(msg);
   });
 
-  onMessage(message, (payload) => {
-    console.log("Message received. ", payload);
-    appInfo.value.onMessage = payload;
+  onMessage(msg, (message) => {
+    console.log(
+      "New foreground notification from Firebase Messaging!",
+      message.notification
+    );
+    new Notification(message.notification.title, {
+      body: message.notification.body,
+    });
+    appInfo.value.onMessage = message;
   });
 };
 

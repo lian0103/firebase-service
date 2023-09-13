@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@firebase/messaging": "^0.12.4",
     "firebase": "^9.22.1"
   },
   "devDependencies": {

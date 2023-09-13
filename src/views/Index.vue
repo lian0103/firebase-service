@@ -51,6 +51,26 @@ const handleTest = () => {
     </div>
   </div>
   <div class="py-6 flex flex-col gap-4">
+    <h2>POSTMAN 配置</h2>
+    <p>
+      POST https://fcm.googleapis.com/fcm/send Content-Type: application/json
+    </p>
+    <p>Authorization: Bearer {Cloud Messaging API (舊版) 伺服器金鑰}</p>
+    <p>{</p>
+    <p>
+      "notification":{"title": "Your Notification Title", "body":
+      "YourNotification Body" },
+    </p>
+    <p>"to": {FirebaseCloudMessageToken}</p>
+    <p>}</p>
+    <p>
+      from firebase console : 舊版 HTTP 或 XMPP API (已於 2023 年 6 月 20
+      日淘汰)，請務必在 2024 年 6 月 20 日以前，改用最新的 Firebase Cloud
+      Messaging API (HTTP v1)。
+    </p>
+  </div>
+
+  <div class="py-6 flex flex-col gap-4">
     <h2>appInfo.FirebaseCloudMessageToken</h2>
     <p>{{ appInfo.FirebaseCloudMessageToken }}</p>
   </div>
